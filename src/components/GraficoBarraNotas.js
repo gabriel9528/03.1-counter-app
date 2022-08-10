@@ -9,7 +9,16 @@ import {
   BarElement,
   PointElement,
 } from "chart.js";
-import { BarraPuntajes, DataArea } from "./datos/BarraPuntajes";
+import {
+  Areas,
+  BarraPuntajes,
+  DataArea,
+  Ptj1,
+  Ptj2,
+  Ptj3,
+  Ptj4,
+  Ptj5,
+} from "./datos/BarraPuntajes";
 chartJS.register(
   CategoryScale,
   LineElement,
@@ -19,41 +28,57 @@ chartJS.register(
 );
 
 function GraficoBarraNotas() {
-  const dataAreas = datosGraficoBarras.map((a) =>
-    a.areas.map((areaSele) => areaSele.area)
+  // const dataAreas = datosGraficoBarras.map((a) =>
+  //   a.areas.map((areaSele) => areaSele.area)
+  // );
+
+  // Funcion para traer todas las areas
+  const Areas = datosGraficoBarras.map((datareas) =>
+    datareas.areas.map(function (index) {
+      return index.area;
+    })
   );
-  
+  console.log(Areas);
+
+  const puntaje1 = Ptj1[0];
+  const puntaje2 = Ptj2[0];
+  const puntaje3 = Ptj3[0];
+  const puntaje4 = Ptj4[0];
+  const puntaje5 = Ptj5[0];
+
+  const arrayNotas = [puntaje1, puntaje2, puntaje3, puntaje4, puntaje5];
+  console.log(arrayNotas)
 
   // Array de notas
-  const puntaje = BarraPuntajes();
-  console.log(puntaje);
+  // const puntaje = BarraPuntajes();
+  // console.log(puntaje[0])
+  // const dataPuntaje = puntaje[0];
+  // const mapaNota = dataPuntaje.map()
+  // const dataArea = Object.values(dataPuntaje);
 
   // Array de areas
-  const areas = DataArea();
-//   console.log(areas);
-  
+  // const area = DataArea();
+  // console.log(area);
 
+  // const ColoresRgbRandom = () => {
+  //   const randomBetween = (min, max) =>
+  //     min + Math.floor(Math.random() * (max - min + 1));
+  //   const r = randomBetween(0, 255);
+  //   const g = randomBetween(0, 255);
+  //   const b = randomBetween(0, 255);
+  //   const colo = `rgba(${r},${g},${b},0.5)`;
+  //   return colo;
+  // };
 
-  const ColoresRgbRandom = () => {
-    const randomBetween = (min, max) =>
-      min + Math.floor(Math.random() * (max - min + 1));
-    const r = randomBetween(0, 255);
-    const g = randomBetween(0, 255);
-    const b = randomBetween(0, 255);
-    const colo = `rgba(${r},${g},${b},0.5)`;
-    return colo;
-  };
-
-  const rgb = () => {
-    let colores = [];
-    for (let i = 0; i < puntaje.length; i++) {
-      if(ColoresRgbRandom()!==ColoresRgbRandom()){
-        colores.push(ColoresRgbRandom());
-      }
-    }
-    return colores;
-  };
-  
+  // const rgb = () => {
+  //   let colores = [];
+  //   for (let i = 0; i < puntaje.length; i++) {
+  //     if (ColoresRgbRandom() !== ColoresRgbRandom()) {
+  //       colores.push(ColoresRgbRandom());
+  //     }
+  //   }
+  //   return colores;
+  // };
 
   //   const dataAreas = datosGraficoBarras.map(({ areas }) => areas.area);
   //   console.log(dataAreas);
@@ -75,31 +100,38 @@ function GraficoBarraNotas() {
   //     Ptj5: "3.80",
   //   };
 
-    const data = {
-      labels: areas,
-      datasets: [
-          {
-            type: "bar",
-            label: "Barra1",
-            width: "10rem",
-            borderColor: rgb(),
-            borderWidth: 2,
-            fill: false,
-            data: puntaje,
-          }
-      ],
-    };
+  // var label=[], data =[];
+  // dataArea.forEach(function(item, i){
+  //   label.push(item)
+  // })
 
-    // const opciones = {
-    //     responsive: true,
-    //     plugins: {
-    //         legend
-    //     }
-    // }
+  // const data = {
+  //   labels: puntaje,
+  //   datasets: [
+  //     {
+  //       type: "bar",
+  //       label: puntaje,
+  //       width: "10rem",
+  //       borderColor: rgb(),
+  //       borderWidth: 2,
+  //       fill: false,
+  //       data: puntaje,
+  //     },
+  //   ],
+  // };
+
+  // const opciones = {
+  //     responsive: true,
+  //     plugins: {
+  //         legend
+  //     }
+  // }
   return (
     <div>
-      <Chart data={data} type="bar" />
-      {}
+      {/* <Chart data={data} type="bar" /> */}
+      {JSON.stringify(Areas, null, 3) +"\n"},
+      {
+        JSON.stringify(arrayNotas, null, 3)}
     </div>
   );
 }
